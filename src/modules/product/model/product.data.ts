@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Product } from "@prisma/client";
+import { Product } from "../../../../prisma/generated/client";
 
 export class ProductData {
     @ApiProperty({description: 'The id of the product', example: '1'})
