@@ -1,9 +1,10 @@
 import { INestApplication } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { NestExpressApplication } from '@nestjs/platform-express';
+
 import { ApplicationModule } from './modules/app.module';
 import { CommonModule, LogInterceptor } from './modules/common';
+import {  NestFastifyApplication } from '@nestjs/platform-fastify';
 
 /**
  * These are API defaults that can be changed using environment variables,
@@ -51,7 +52,7 @@ function createSwagger(app: INestApplication) {
  */
 async function bootstrap(): Promise<void> {
 
-    const app = await NestFactory.create<NestExpressApplication>(
+    const app = await NestFactory.create<NestFastifyApplication>(
         ApplicationModule
     );
 
