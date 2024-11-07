@@ -4,18 +4,20 @@
 version: '3'
 
 services:
-  postgresql:
-    image: docker.io/bitnami/postgresql:16
+  nestjs:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - '5432:5432'
+      - '3000:3000'
     volumes:
-      - 'postgresql_data:/bitnami/postgresql'
+      - '.:/app'
     environment:
-      - ALLOW_EMPTY_PASSWORD=yes
-      - POSTGRESQL_DATABASE=nestjs
-      - POSTGRESQL_USERNAME=nestjs
-      - POSTGRESQL_PASSWORD=password
+      - API_PORT=3000
+      - SWAGGER_ENABLE=1
+      - API_PREFIX=/api/v1
+      - JWT_SECRET=secret
+      - JWT_ISSUER=nestjs
+      - HEALTH_TOKEN=health
+      - PASSENGERS_ALLOWED=yes
 
-volumes:
-  postgresql_data:
-    driver: local

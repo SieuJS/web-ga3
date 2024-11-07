@@ -4,7 +4,9 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { ApplicationModule } from './modules/app.module';
 import { CommonModule, LogInterceptor } from './modules/common';
-import {  NestFastifyApplication } from '@nestjs/platform-fastify';
+
+import { join } from 'path';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 /**
  * These are API defaults that can be changed using environment variables,
@@ -52,10 +54,10 @@ function createSwagger(app: INestApplication) {
  */
 async function bootstrap(): Promise<void> {
 
-    const app = await NestFactory.create<NestFastifyApplication>(
+    const app = await NestFactory.create<NestExpressApplication>(
         ApplicationModule
     );
-
+    app.useStaticAssets(join(__dirname, '..', 'client'));
     // @todo Enable Helmet for better API security headers
 
     app.setGlobalPrefix(process.env.API_PREFIX || API_DEFAULT_PREFIX);
