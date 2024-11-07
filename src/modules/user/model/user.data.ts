@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { User } from "../../../../prisma/generated/client";
+import { User } from "@prisma/client";
 
 export class UserData {
     @ApiProperty({description: 'The id of the user', example: 1})
