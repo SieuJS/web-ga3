@@ -25,8 +25,7 @@ RUN npm ci
 COPY --chown=node:node . .
 RUN npx prisma db pull \
     && npx prisma generate \
-    && npm run build \
-    && npm prune --omit=dev
+    && npm run build 
 
 # ---
 
