@@ -23,4 +23,3 @@ npm-debug.log
 # environment
 .env
 
-prisma/generated/client
